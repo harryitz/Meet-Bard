@@ -62,7 +62,11 @@ class Bard {
                 $question
             ),
             null,
-            [$this->conversation_id, $this->response_id, $this->choice_id],
+            array(
+                $this->conversation_id,
+                $this->response_id,
+                $this->choice_id
+            ),
         );
         $data = array(
             "f.req" => json_encode([null, json_encode($question_struct)]),
@@ -84,7 +88,10 @@ class Bard {
             "factualityQueries" => $body_struct[3],
             "textQuery" => $body_struct[2][0] ?? "",
             "choices" => array_map(function ($i) {
-                return ["id" => $i[0], "content" => $i[1]];
+                return array(
+                    "id" => $i[0],
+                    "content" => $i[1]
+                );
             }, $body_struct[4]),
         );
         $this->conversation_id = $return["conversation_id"];
@@ -100,9 +107,9 @@ class Bard {
      */
     private function getCURL(): ?InternetRequestResult {
         try {
-            $extraOpts = [
+            $extraOpts = array(
                 CURLOPT_COOKIE => '__Secure-1PSID=' . $this->getUser()->getToken()
-            ];
+            );
             return Internet::simpleCurl("https://bard.google.com/u/1/?hl=en", $this->timeout, [], $extraOpts);
         }catch(InternetException $ex){
             $err = $ex->getMessage();
