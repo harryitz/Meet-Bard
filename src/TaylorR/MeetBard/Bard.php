@@ -88,18 +88,10 @@ class Bard {
 
     private function getCURL(): ?InternetRequestResult {
         try {
-            $headers = [
-                "Host: bard.google.com",
-                "X-Same-Domain: 1",
-                "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
-                "Content-Type: application/x-www-form-urlencoded;charset=UTF-8",
-                "Origin: https://bard.google.com",
-                "Referer: https://bard.google.com/",
-            ];
             $extraOpts = [
                 CURLOPT_COOKIE => '__Secure-1PSID=' . $this->getUser()->getToken()
             ];
-            return Internet::simpleCurl("https://bard.google.com/u/1/?hl=en", $this->timeout, $headers, $extraOpts);
+            return Internet::simpleCurl("https://bard.google.com/u/1/?hl=en", $this->timeout, [], $extraOpts);
         }catch(InternetException $ex){
             $err = $ex->getMessage();
             return null;
@@ -109,21 +101,13 @@ class Bard {
     private function postCURL(string $url, array $data): ?InternetRequestResult
     {
         try {
-            $headers = [
-                "Host: bard.google.com",
-                "X-Same-Domain: 1",
-                "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
-                "Content-Type: application/x-www-form-urlencoded;charset=UTF-8",
-                "Origin: https://bard.google.com",
-                "Referer: https://bard.google.com/",
-            ];
             $extraOpts = [
                 CURLOPT_COOKIE => '__Secure-1PSID=' . $this->getUser()->getToken(),
                 CURLOPT_POST => 1,
                 CURLOPT_POSTFIELDS => http_build_query($data)
             ];
 
-            return Internet::simpleCurl($url, $this->timeout, $headers, $extraOpts);
+            return Internet::simpleCurl($url, $this->timeout, [], $extraOpts);
         } catch(InternetException $ex){
             $err = $ex->getMessage();
             return null;
