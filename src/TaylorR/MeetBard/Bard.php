@@ -25,16 +25,21 @@ class Bard {
         $this->SNlM0e = $this->_get_snim0e();
     }
 
+    /**
+     * @return User
+     */
     public function getUser(): User
     {
         return $this->user;
     }
 
+    /**
+     * @return bool
+     */
     public function isValid(): bool
     {
         return $this->SNlM0e !== "";
     }
-
 
     private function _get_snim0e(): string {
         $result = $this->getCURL();
@@ -43,22 +48,27 @@ class Bard {
         return $matches[1] ?? "";
     }
 
+    /**
+     * @param string $question
+     * @return array|string[]|null
+     */
     public function ask(string $question): ?array {
-        $params = [
+        $params = array(
             "bl" => "boq_assistant-bard-web-server_20230514.20_p0",
             "_reqid" => strval($this->requestid),
             "rt" => "c",
-        ];
-        $question_struct = [
-            [$question],
+        );
+        $question_struct = array(
+            array(
+                $question
+            ),
             null,
             [$this->conversation_id, $this->response_id, $this->choice_id],
-        ];
-        $data = [
+        );
+        $data = array(
             "f.req" => json_encode([null, json_encode($question_struct)]),
             "at" => $this->SNlM0e,
-        ];
-
+        );
         $url = 'https://bard.google.com/u/1/_/BardChatUi/data/assistant.lamda.BardFrontendService/StreamGenerate?' . http_build_query($params);
         $result = $this->postCURL($url, $data);
         $json = json_decode(explode("\n", $result->getBody())[3], true)[0][2];
@@ -86,6 +96,9 @@ class Bard {
         return $return;
     }
 
+    /**
+     * @return InternetRequestResult|null
+     */
     private function getCURL(): ?InternetRequestResult {
         try {
             $extraOpts = [
@@ -98,6 +111,11 @@ class Bard {
         }
     }
 
+    /**
+     * @param string $url
+     * @param array $data
+     * @return InternetRequestResult|null
+     */
     private function postCURL(string $url, array $data): ?InternetRequestResult
     {
         try {
