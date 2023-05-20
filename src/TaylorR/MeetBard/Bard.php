@@ -50,7 +50,7 @@ class Bard {
             "rt" => "c",
         ];
         $question_struct = [
-            ["What is Ddos"],
+            [$question],
             null,
             [$this->conversation_id, $this->response_id, $this->choice_id],
         ];
