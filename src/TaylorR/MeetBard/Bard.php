@@ -15,14 +15,13 @@ class Bard {
     private string $conversation_id = "";
     private string $response_id = "";
     private string $choice_id = "";
-    private string $SNlM0e = "";
 
     public function __construct(
         private User $user,
         private int $timeout = 10
     ){
         $this->requestid = rand(pow(10, 3-1), pow(10, 3)-1);
-        $this->SNlM0e = $this->_get_snim0e();
+        $this->getUser()->setSNlM0e($this->_get_snim0e());
     }
 
     /**
@@ -38,7 +37,7 @@ class Bard {
      */
     public function isValid(): bool
     {
-        return $this->SNlM0e !== "";
+        return $this->user->getSNlM0e() !== "";
     }
 
     private function _get_snim0e(): string {
@@ -67,7 +66,7 @@ class Bard {
         );
         $data = array(
             "f.req" => json_encode([null, json_encode($question_struct)]),
-            "at" => $this->SNlM0e,
+            "at" => $this->getUser()->getSNlM0e(),
         );
         $url = 'https://bard.google.com/u/1/_/BardChatUi/data/assistant.lamda.BardFrontendService/StreamGenerate?' . http_build_query($params);
         $result = $this->postCURL($url, $data);
