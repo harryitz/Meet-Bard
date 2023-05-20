@@ -33,7 +33,7 @@ projects:
   MyPlugin:
     path: ""
     libs:
-      - src: TaylorR47/Meet-Bard/MeetBard
+      - src: TaylorR47/Meet-Bard/Meet-Bard
         version: ^1.0.0
 ```
 
