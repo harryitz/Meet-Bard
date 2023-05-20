@@ -14,5 +14,10 @@
             "email": "nguyenhieucoder47@gmail.com"
         }
     ],
-    "require": {}
+    "extra": {
+        "virion": {
+            "spec": "3.0",
+            "namespace-root": "Taylor\\MeetBard"
+        }
+    }
 }
