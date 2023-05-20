@@ -2,6 +2,7 @@
 
 [![Lint](https://poggit.pmmp.io/ci.shield/TaylorR47/Meet-Bard/Meet-Bard)](https://poggit.pmmp.io/ci/TaylorR47/Meet-Bard/Meet-Bard) 
 [![Discord](https://img.shields.io/discord/1100650029573738508.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/yAhsgskaGy) 
+
 **NOTICE:** This plugin branch is for PocketMine-MP 4. <br/> ✨ **a library for PMMP connect to Google Bard AI.** </div>
 `composer require taylor/meet-bard`
 
