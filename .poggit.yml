@@ -1,7 +1,8 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/TaylorR47/Meet-Bard
 build-by-default: true
 branches:
-- main
+- pm4
+- pm5
 projects:
   Meet-Bard:
     path: ""
