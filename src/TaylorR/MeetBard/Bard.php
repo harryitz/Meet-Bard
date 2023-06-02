@@ -17,8 +17,8 @@ class Bard {
     private string $choice_id = "";
 
     public function __construct(
-        private readonly User $user,
-        private readonly int $timeout = 10
+        private User $user,
+        private int $timeout = 10
     ){
         $this->requestid = rand(pow(10, 3-1), pow(10, 3)-1);
         $this->getUser()->setSNlM0e($this->_get_snim0e());
