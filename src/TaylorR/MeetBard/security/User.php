@@ -10,7 +10,7 @@ class User
     private string $SNlM0e = "";
 
     public function __construct(
-        private string $token
+        private readonly string $token
     ){}
 
     public function getToken(): string
